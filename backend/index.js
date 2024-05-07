@@ -14,7 +14,7 @@ app.use(express.static('../public'));
 // app.use('/api/auth',require('./routes/auth'))
 app.use("/api/auth",require("./routes/userRoutes"))
 
-app.get('/signup', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(__dirname + '../public/index.html');
 });
 app.get('/otpverification', (req, res) => {
@@ -23,9 +23,9 @@ app.get('/otpverification', (req, res) => {
 app.get('/loginuser', (req, res) => {
     res.sendFile(__dirname + '../backend/public/loginuser.html');
 });
-app.get('/', (req, res) => {
-    res.json({"jai shree ram"})
-});
+// app.get('/', (req, res) => {
+//     res.json({"jai shree ram"})
+// });
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
