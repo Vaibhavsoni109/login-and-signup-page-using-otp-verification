@@ -6,11 +6,18 @@
 "use":"@vercel/node"
         }
     ],
-    "routes": [
-        {
-     "src":"/(.*)",
-        "dest":"index.js"
-        }
-    ]
+{
+  "routes": [
+    { 
+      "src": "/Controller/.*",
+      "dest": "/Controller/:1"
+    },
+    {
+      "src": "/routs/(.*)",
+      "dest": "/routes/:1"
+    }
+  ]
+}
+
   }
   
