@@ -1,23 +1,15 @@
 {
-    "version": 2,
-      "builds":[
-        {
-"src":"index.js",
-"use":"@vercel/node"
-        }
-    ],
-{
-  "routes": [
-    { 
-      "src": "/Controller/.*",
-      "dest": "/Controller/:1"
-    },
+  "version": 2,
+  "builds": [
     {
-      "src": "/routs/(.*)",
-      "dest": "/routes/:1"
+      "src": "index.js", 
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "index.js"
     }
   ]
 }
-
-  }
-  
