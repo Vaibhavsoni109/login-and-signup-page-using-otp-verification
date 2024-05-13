@@ -4,7 +4,9 @@ const connectToMongo=require("./Db")
 const port=process.env.PORT ;
 var cors = require('cors');
 connectToMongo();
-app.use(cors())
+app.use(cors({
+  origin: 'https://login-and-signup-page-using-otp-verification-5bzi.vercel.app/'
+}));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
