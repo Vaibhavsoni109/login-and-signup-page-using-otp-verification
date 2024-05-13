@@ -17,7 +17,8 @@ app.use(express.static('../public'));
 app.use("/api/auth",require("./routes/userRoutes"))
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '../public/index.html');
+    // res.sendFile(__dirname + '../public/index.html');
+  res.send("hello");
 });
 app.get('/otpverification', (req, res) => {
     res.sendFile(__dirname + '../public/otpverification.html');
