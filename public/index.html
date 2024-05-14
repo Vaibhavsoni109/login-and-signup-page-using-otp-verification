@@ -4,25 +4,26 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
   <link rel="shortcut icon" href="https://th.bing.com/th/id/OIP.kwE8IapDUTtylieeRnn2YAHaHa?pid=ImgDet&rs=1" type="image/x-icon" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
-  <title>Registration form</title>
-</head>
-<body class="background-radial-gradient">
+  <title>Registration Form</title>
   <style>
     .background-radial-gradient {
-      background-color: hsl(219, 43%, 17% );
+      background-color: hsl(219, 43%, 17%);
       background-image: radial-gradient(650px circle at 0% 0%, hsl(218, 41%, 35%) 15%, hsl(218, 41%, 30%) 35%, hsl(218, 41%, 20%) 75%, hsl(218, 41%, 19%) 80%, transparent 100%),
       radial-gradient(1250px circle at 100% 100%, hsl(218, 41%, 45%) 15%, hsl(218, 41%, 30%) 35%, hsl(218, 41%, 20%) 75%, hsl(218, 41%, 19%) 80%, transparent 100%);
+    }
+    #radius-shape-1, #radius-shape-2 {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(#44006b, #ad1fff);
+      overflow: hidden;
     }
     #radius-shape-1 {
       height: 220px;
       width: 220px;
       top: 110px;
       left: 130px;
-      background: radial-gradient(#44006b, #ad1fff);
-      overflow: hidden;
     }
     #radius-shape-2 {
       border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
@@ -30,13 +31,9 @@
       right: 180px;
       width: 200px;
       height: 300px;
-      background: radial-gradient(#44006b, #ad1fff);
-      overflow: hidden;
     }
     #card {
       margin-top: 100px;
-      top: 7%;
-      right: 34%;
       width: 450px;
       margin: 100px auto;
       text-align: center;
@@ -48,20 +45,26 @@
       background-color: #ececec77;
     }
   </style>
+</head>
+<body class="background-radial-gradient">
   <section class="text-center">
     <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
     <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
     <div class="card mx-9 lg-12 mx-md-5 shadow-5-strong" id="card">
       <div class="card-body px-md-5 align-left">
         <h2 class="fw-bold mb-5">Registration Form</h2>
-        <form id="signupForm" style="text-align: left">
+        <form id="signupForm" style="text-align: left" class="col-sm-6 mx-auto">
           <div class="form-outline mb-4">
-            <label class="form-label" for="form3Example3">Email address</label>
-            <input type="email" id="form3Example3" name="email" class="form-control" />
+            <label class="form-label" for="name">Name</label>
+            <input type="text" id="name" name="name" class="form-control bg-light" required />
           </div>
           <div class="form-outline mb-4">
-            <label class="form-label" for="form3Example4">OTP</label>
-            <input type="otp" id="form3Example4" name="otp" class="form-control" />
+            <label class="form-label" for="email">Email address</label>
+            <input type="email" id="email" name="email" class="form-control" required />
+          </div>
+          <div class="form-outline mb-4">
+            <label class="form-label" for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-control" required />
           </div>
           <button type="submit" class="btn btn-primary btn-block mb-4">Register</button>
         </form>
@@ -69,24 +72,25 @@
     </div>
   </section>
   <script>
-    document.getElementById('signupForm').addEventListener('submit', async function (event) {
+    document.getElementById('signupForm').addEventListener('submit', async function(event) {
       event.preventDefault();
       const formData = new FormData(this);
+      const name = formData.get('name');
       const email = formData.get('email');
-      const otp = formData.get('otp');
+      const password = formData.get('password');
+
       try {
-        const response = await fetch('https://login-and-signup-page-using-otp.onrender.com/api/auth/verifyotp', {
+        const response = await fetch('https://login-and-signup-page-using-otp.onrender.com/api/auth/createuser', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ email, otp })
+          body: JSON.stringify({ name, email, password })
         });
         const data = await response.json();
-        console.log(response);
         if (response.ok) {
-          alert("OTP verified successfully");
-          window.location.href = 'login.html';
+          alert("OTP sent successfully");
+          window.location.href = 'otpverification.html';
         } else {
           alert(data.error);
         }
