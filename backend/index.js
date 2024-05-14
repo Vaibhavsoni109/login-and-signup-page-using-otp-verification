@@ -6,23 +6,26 @@ var cors = require('cors');
 connectToMongo();
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
+// List of allowed origins
 const allowedOrigins = [
-   'https://login-and-signup-page-using-git-e01a29-vaibhavsoni109s-projects.vercel.app/',
-    'http://127.0.0.1:5500', // Add this line
-    
-  ];
-  
-  const corsOptions = {
-    origin: function (origin, callback) {
-      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
+  'https://login-and-signup-page-using-otp-verification-5bzi.vercel.app',
+  'https://login-and-signup-page-using-otp-verification-te63-2evy0p411.vercel.app',
+  'https://login-and-signup-page-using-git-e01a29-vaibhavsoni109s-projects.vercel.app'
+];
+
+// CORS configuration
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
     }
-  };
-  
-  app.use(cors(corsOptions));
+  }
+};
+
+// Apply CORS middleware
+app.use(cors(corsOptions));
 
 app.use(express.static('../public'));
 
