@@ -7,7 +7,7 @@ connectToMongo();
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 const allowedOrigins = [
-   'login-and-signup-page-using-otp-verification.vercel.app',
+   'https://login-and-signup-page-using-git-e01a29-vaibhavsoni109s-projects.vercel.app/',
     'http://127.0.0.1:5500', // Add this line
     
   ];
