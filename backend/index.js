@@ -4,25 +4,10 @@ const connectToMongo=require("./Db")
 const port=process.env.PORT ;
 var cors = require('cors');
 connectToMongo();
-
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
-const allowedOrigins = [
-    'https://login-and-signup-page-using-otp-verification-5bzi.vercel.app',
-    'https://login-and-signup-page-using-otp-verification-te63-2evy0p411.vercel.app'
-  ];
-  
-  const corsOptions = {
-    origin: function (origin, callback) {
-      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    }
-  };
-  
-  app.use(cors(corsOptions));
+
 
 app.use(express.static('../public'));
 
