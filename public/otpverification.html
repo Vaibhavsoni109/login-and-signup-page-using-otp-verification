@@ -222,7 +222,7 @@ animation-delay: .75s
     const otp = formData.get('otp');
 
     try {
-      const response = await fetch('/api/auth/verifyotp', {
+      const response = await fetch('https://login-and-signup-page-using-otp.onrender.com/api/auth/verifyotp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
